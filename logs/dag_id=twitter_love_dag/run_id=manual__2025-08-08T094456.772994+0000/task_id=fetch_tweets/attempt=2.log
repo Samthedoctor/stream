@@ -1,0 +1,43 @@
+[2025-08-08T09:46:04.737+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-08-08T09:46:04.770+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: twitter_love_dag.fetch_tweets manual__2025-08-08T09:44:56.772994+00:00 [queued]>
+[2025-08-08T09:46:04.778+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: twitter_love_dag.fetch_tweets manual__2025-08-08T09:44:56.772994+00:00 [queued]>
+[2025-08-08T09:46:04.779+0000] {taskinstance.py:2303} INFO - Starting attempt 2 of 2
+[2025-08-08T09:46:04.796+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): fetch_tweets> on 2025-08-08 09:44:56.772994+00:00
+[2025-08-08T09:46:04.838+0000] {standard_task_runner.py:63} INFO - Started process 81 to run task
+[2025-08-08T09:46:04.844+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'twitter_love_dag', 'fetch_tweets', 'manual__2025-08-08T09:44:56.772994+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/twitter_love_dag.py', '--cfg-path', '/tmp/tmp98yo6m3u']
+[2025-08-08T09:46:04.857+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask fetch_tweets
+[2025-08-08T09:46:04.892+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:195: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-08-08T09:46:04.967+0000] {task_command.py:426} INFO - Running <TaskInstance: twitter_love_dag.fetch_tweets manual__2025-08-08T09:44:56.772994+00:00 [running]> on host ef743f407d39
+[2025-08-08T09:46:05.101+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='twitter_love_dag' AIRFLOW_CTX_TASK_ID='fetch_tweets' AIRFLOW_CTX_EXECUTION_DATE='2025-08-08T09:44:56.772994+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-08-08T09:44:56.772994+00:00'
+[2025-08-08T09:46:05.103+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-08-08T09:46:05.683+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-08-08T09:46:05.702+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/twitter_love_dag.py", line 33, in fetch_tweets
+    tweets = client.search_recent_tweets(
+  File "/home/airflow/.local/lib/python3.10/site-packages/tweepy/client.py", line 1276, in search_recent_tweets
+    return self._make_request(
+  File "/home/airflow/.local/lib/python3.10/site-packages/tweepy/client.py", line 129, in _make_request
+    response = self.request(method, route, params=request_params,
+  File "/home/airflow/.local/lib/python3.10/site-packages/tweepy/client.py", line 98, in request
+    raise Unauthorized(response)
+tweepy.errors.Unauthorized: 401 Unauthorized
+Unauthorized
+[2025-08-08T09:46:05.795+0000] {taskinstance.py:1205} INFO - Marking task as FAILED. dag_id=twitter_love_dag, task_id=fetch_tweets, execution_date=20250808T094456, start_date=20250808T094604, end_date=20250808T094605
+[2025-08-08T09:46:05.849+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 10 for task fetch_tweets (401 Unauthorized
+Unauthorized; 81)
+[2025-08-08T09:46:05.908+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-08-08T09:46:05.941+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-08-08T09:46:05.949+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

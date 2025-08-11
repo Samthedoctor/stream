@@ -1,0 +1,67 @@
+[2025-08-11T09:32:45.196+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-08-11T09:32:45.226+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_fred_yahoo_update.fetch_and_update_historical scheduled__2025-08-10T00:00:00+00:00 [queued]>
+[2025-08-11T09:32:45.235+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_fred_yahoo_update.fetch_and_update_historical scheduled__2025-08-10T00:00:00+00:00 [queued]>
+[2025-08-11T09:32:45.236+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2025-08-11T09:32:45.250+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): fetch_and_update_historical> on 2025-08-10 00:00:00+00:00
+[2025-08-11T09:32:45.278+0000] {standard_task_runner.py:63} INFO - Started process 56 to run task
+[2025-08-11T09:32:45.297+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_fred_yahoo_update', 'fetch_and_update_historical', 'scheduled__2025-08-10T00:00:00+00:00', '--job-id', '48', '--raw', '--subdir', 'DAGS_FOLDER/etl_fred_yahoo_update.py', '--cfg-path', '/tmp/tmp9iqij9xi']
+[2025-08-11T09:32:45.305+0000] {standard_task_runner.py:91} INFO - Job 48: Subtask fetch_and_update_historical
+[2025-08-11T09:32:45.339+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:195: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2025-08-11T09:32:45.567+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_fred_yahoo_update.fetch_and_update_historical scheduled__2025-08-10T00:00:00+00:00 [running]> on host fded90c95865
+[2025-08-11T09:32:45.724+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_fred_yahoo_update' AIRFLOW_CTX_TASK_ID='fetch_and_update_historical' AIRFLOW_CTX_EXECUTION_DATE='2025-08-10T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-08-10T00:00:00+00:00'
+[2025-08-11T09:32:45.725+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-08-11T09:32:45.736+0000] {etl_fred_yahoo_update.py:147} INFO - Starting ETL task for FRED + Yahoo update.
+[2025-08-11T09:32:48.158+0000] {etl_fred_yahoo_update.py:158} INFO - Loaded historical CSV from s3://historical-data/historical_data.csv shape=(3682, 35)
+[2025-08-11T09:32:48.167+0000] {etl_fred_yahoo_update.py:167} INFO - Fetching new data: 2025-08-11 -> 2025-08-11
+[2025-08-11T09:32:57.348+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:32:57.349+0000] {multi.py:198} ERROR - ['AAPL']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:32:57.371+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for AAPL in range 2025-08-11..2025-08-11
+[2025-08-11T09:32:59.452+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:32:59.453+0000] {multi.py:198} ERROR - ['MSFT']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:32:59.457+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for MSFT in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:00.864+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:00.865+0000] {multi.py:198} ERROR - ['GOOG']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:00.871+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for GOOG in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:03.116+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:03.117+0000] {multi.py:198} ERROR - ['AMZN']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:03.121+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for AMZN in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:05.136+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:05.137+0000] {multi.py:198} ERROR - ['NVDA']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:05.145+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for NVDA in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:06.256+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:06.257+0000] {multi.py:198} ERROR - ['META']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:06.260+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for META in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:07.428+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:07.432+0000] {multi.py:198} ERROR - ['TSLA']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:07.439+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for TSLA in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:08.772+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:08.773+0000] {multi.py:198} ERROR - ['BRK-B']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:08.776+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for BRK-B in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:11.365+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:11.366+0000] {multi.py:198} ERROR - ['JPM']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:11.371+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for JPM in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:12.581+0000] {multi.py:185} ERROR - 
+1 Failed download:
+[2025-08-11T09:33:12.582+0000] {multi.py:198} ERROR - ['WMT']: YFPricesMissingError('possibly delisted; no price data found  (1d 2025-08-11 -> 2025-08-12)')
+[2025-08-11T09:33:12.586+0000] {etl_fred_yahoo_update.py:99} WARNING - No yahoo data for WMT in range 2025-08-11..2025-08-11
+[2025-08-11T09:33:12.603+0000] {warnings.py:109} WARNING - /opt/***/dags/etl_fred_yahoo_update.py:171: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  combined = pd.concat([hist, new_df])
+
+[2025-08-11T09:33:12.755+0000] {etl_fred_yahoo_update.py:198} INFO - Wrote updated dataset to s3://historical-data/historical_data.csv shape=(3683, 35)
+[2025-08-11T09:33:12.758+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-08-11T09:33:12.759+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-08-11T09:33:12.787+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=etl_fred_yahoo_update, task_id=fetch_and_update_historical, execution_date=20250810T000000, start_date=20250811T093245, end_date=20250811T093312
+[2025-08-11T09:33:12.871+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-08-11T09:33:12.932+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-08-11T09:33:12.937+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
