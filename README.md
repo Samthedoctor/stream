@@ -16,11 +16,7 @@ This project moves beyond simple indicators by using unsupervised machine learni
 2.  [Our Solution](#-our-solution)
 3.  [Key Features](#-key-features)
 4.  [System Architecture & Workflow](#-system-architecture--workflow)
-5.  [Technology Stack](#-technology-stack)
-6.  [Installation & Setup](#-installation--setup)
-7.  [Usage](#-usage)
-8.  [Model Details](#-model-details)
-9.  [License](#-license)
+
 
 ***
 
@@ -87,58 +83,6 @@ graph TD
     style H fill:#1A73E8,stroke:#333,stroke-width:2px
     style L fill:#1A73E8,stroke:#333,stroke-width:2px
 
-```markdown
 
-## 💻 Technology Stack
-
-* **Orchestration:** Apache Airflow
-* **Data Storage:** Minio
-* **Data Processing:** Pandas
-* **ML/AI:** Scikit-learn
-* **Web Framework:** Streamlit
-* **Data Sources:** Yahoo Finance (`yfinance`), NewsAPI
-* **Containerization :** Docker
-
-***
-
-## 🧠 Model Details
-
-### Market Regime Clustering
-
-The core of this project is the **K-Means clustering** model.
-
-* **Features Used:** The model is trained on a dataset containing daily values for key market indicators (`OHLCV` of `SP500`, `VIXCLS`, `T10Y2Y`, etc.) combined with the aggregated news sentiment score for that day.
-* **Objective:** The algorithm groups days with similar market characteristics into a predefined number of clusters (e.g., K=4).
-* **Interpretation:** Each cluster represents a distinct **market regime**. By analyzing the centroid (average values) of each cluster, we can assign a qualitative label, such as:
-    * Cluster 0: Calm / Low Volatility
-    * Cluster 1: Bullish Momentum
-    * Cluster 2: Bearish / Risk-Off
-    * Cluster 3: High Uncertainty / Transitional
-
-When new data comes in, the model assigns it to one of these clusters, providing an immediate classification of the current market state.
-
-***
-
-## ▶️ Usage & Quick Start
-
-Follow these steps to get the application running.
-
-1.  **Start all services with Docker Compose.**
-    Open your terminal in the project's root directory and run:
-    ```bash
-    docker-compose up -d
-    ```
-
-2.  **Set up and trigger the Airflow DAGs.**
-    * Open your web browser and navigate to the Airflow UI (usually `http://localhost:8080`).
-    * Log in with the credentials `admin` and password `admin`.
-    * You will see two DAGs. Enable them using the toggle switches and trigger them to run.
-
-3.  **Launch the FinSight AI Dashboard.**
-    Once the DAGs have successfully run and processed the data, run the following command in your terminal:
-    ```bash
-    streamlit run app.py
-    ```
-    Your dashboard will now be live and accessible in your browser.
 
 
